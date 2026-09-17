@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "author": "FrioLog - No de Borda Inteligente - Checkpoint 1 Edge Computing FIAP",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+
+    { "type": "wokwi-dht22", "id": "dht1", "top": -19.5, "left": 220.6,
+      "attrs": { "temperature": "5", "humidity": "60" } },
+
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": -57.8, "left": -249.6,
+      "attrs": {} },
+
+    { "type": "wokwi-buzzer", "id": "bz1", "top": 57.6, "left": -220.2,
+      "attrs": { "volume": "0.1" } },
+
+    { "type": "wokwi-rgb-led", "id": "led1", "top": 182.4, "left": -263.6,
+      "attrs": { "common": "cathode" } },
+
+    { "type": "wokwi-resistor", "id": "r1", "top": 176.0, "left": -153.6, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 214.4, "left": -153.6, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 252.8, "left": -153.6, "attrs": { "value": "220" } },
+
+    { "type": "wokwi-relay-module", "id": "rele1", "top": 316.8, "left": -259.2,
+      "attrs": {} }
+  ],
+  "connections": [
+    [ "dht1:VCC", "esp:3V3",   "red",    [ "h0" ] ],
+    [ "dht1:GND", "esp:GND.2", "black",  [ "h0" ] ],
+    [ "dht1:SDA", "esp:15",    "green",  [ "h0" ] ],
+
+    [ "ldr1:VCC", "esp:3V3",   "red",    [ "h0" ] ],
+    [ "ldr1:GND", "esp:GND.1", "black",  [ "h0" ] ],
+    [ "ldr1:AO",  "esp:34",    "blue",   [ "h0" ] ],
+
+    [ "bz1:2", "esp:25",    "purple", [ "h0" ] ],
+    [ "bz1:1", "esp:GND.1", "black",  [ "h0" ] ],
+
+    [ "esp:27", "r1:1", "red",    [ "h0" ] ],
+    [ "esp:14", "r2:1", "green",  [ "h0" ] ],
+    [ "esp:13", "r3:1", "blue",   [ "h0" ] ],
+    [ "r1:2", "led1:R", "red",    [ "h0" ] ],
+    [ "r2:2", "led1:G", "green",  [ "h0" ] ],
+    [ "r3:2", "led1:B", "blue",   [ "h0" ] ],
+    [ "led1:COM", "esp:GND.1", "black", [ "h0" ] ],
+
+    [ "rele1:VCC", "esp:5V",    "red",    [ "h0" ] ],
+    [ "rele1:GND", "esp:GND.1", "black",  [ "h0" ] ],
+    [ "rele1:IN",  "esp:26",    "orange", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
