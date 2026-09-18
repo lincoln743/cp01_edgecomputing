@@ -202,6 +202,29 @@ EstadoNo decidirEstado() {
 /* --------------------------------------------------------------------------
  * 7. ACIONAMENTO DOS ATUADORES CONFORME O ESTADO DECIDIDO
  * ------------------------------------------------------------------------ */
+/* O buzzer usa o periferico LEDC. Chamar tone()/noTone() a cada volta do loop
+   faz o driver reclamar ("LEDC is not initialized") e inunda o Serial Monitor,
+   entao so falamos com ele quando o estado do buzzer realmente muda.        */
+bool     buzzerLigado = false;
+unsigned buzzerFreqAtual = 0;
+
+void acionarBuzzer(unsigned frequencia) {   // frequencia 0 = silencio
+  if (frequencia == 0) {
+    if (buzzerLigado) {
+      noTone(PIN_BUZZER);
+      digitalWrite(PIN_BUZZER, LOW);
+      buzzerLigado    = false;
+      buzzerFreqAtual = 0;
+    }
+    return;
+  }
+  if (!buzzerLigado || frequencia != buzzerFreqAtual) {
+    tone(PIN_BUZZER, frequencia);
+    buzzerLigado    = true;
+    buzzerFreqAtual = frequencia;
+  }
+}
+
 void corLed(bool r, bool g, bool b) {
   digitalWrite(PIN_LED_R, r);
   digitalWrite(PIN_LED_G, g);
@@ -229,33 +252,33 @@ void aplicarAtuadores(EstadoNo e) {
       // Fail-safe: sem leitura confiavel o compressor nao e comandado.
       digitalWrite(PIN_RELE, RELE_DESLIGADO);
       corLed(pulsoAlarmeOn, 0, pulsoAlarmeOn);              // magenta piscando
-      if (pulsoAlarmeOn) tone(PIN_BUZZER, 1000); else noTone(PIN_BUZZER);
+      acionarBuzzer(pulsoAlarmeOn ? 1000 : 0);
       break;
 
     case ST_CRITICO:
       digitalWrite(PIN_RELE, RELE_LIGADO);                  // refrigeracao maxima
       corLed(pulsoAlarmeOn, 0, 0);                          // vermelho piscando
-      if (pulsoAlarmeOn) tone(PIN_BUZZER, 2000); else noTone(PIN_BUZZER);
+      acionarBuzzer(pulsoAlarmeOn ? 2000 : 0);
       break;
 
     case ST_PORTA_ABERTA:
       // Decisao de eficiencia: com a porta aberta nao adianta gastar compressor.
       digitalWrite(PIN_RELE, RELE_DESLIGADO);
       corLed(1, 1, 0);                                      // amarelo fixo
-      if (pulsoAlarmeOn) tone(PIN_BUZZER, 1500); else noTone(PIN_BUZZER);
+      acionarBuzzer(pulsoAlarmeOn ? 1500 : 0);
       break;
 
     case ST_RESFRIANDO:
       digitalWrite(PIN_RELE, RELE_LIGADO);                  // compressor ligado
       corLed(0, 0, 1);                                      // azul fixo
-      noTone(PIN_BUZZER);
+      acionarBuzzer(0);
       break;
 
     case ST_NORMAL:
     default:
       digitalWrite(PIN_RELE, RELE_DESLIGADO);
       corLed(0, 1, 0);                                      // verde fixo
-      noTone(PIN_BUZZER);
+      acionarBuzzer(0);
       break;
   }
 }
@@ -317,7 +340,7 @@ void setup() {
 
   digitalWrite(PIN_RELE, RELE_DESLIGADO);
   corLed(0, 0, 0);
-  noTone(PIN_BUZZER);
+  digitalWrite(PIN_BUZZER, LOW);   // sem noTone() aqui: o canal LEDC ainda nao existe
 
   analogReadResolution(12);           // ADC 0..4095
   analogSetPinAttenuation(PIN_LDR, ADC_11db);   // faixa util ate ~3.3 V
