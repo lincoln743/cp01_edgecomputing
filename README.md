@@ -3,6 +3,8 @@
 **Checkpoint 1 · Edge Computing · FIAP — Graduação em Ciência da Computação**
 Prof. Flavio M. Azevedo
 
+**Dupla:** Lincoln Simao Pereira (RM 567284) · Nicolas Sakaue (RM 567752) — Turma 2CCPS
+
 Protótipo (prova de conceito) de um **nó de borda** para a câmara-piloto da
 FrioLog Soluções em Logística: o ESP32 percebe o ambiente com 2 sensores,
 **decide sozinho, sem internet**, e aciona os atuadores da câmara.

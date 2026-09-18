@@ -2,11 +2,11 @@
 **FIAP · Graduação em Ciência da Computação · Edge Computing · Prof. Flavio M. Azevedo**
 Checkpoint 1 · Aula 6 · Atividade avaliativa em dupla
 
-| | |
-|---|---|
-| **Aluno 1:** | **RM:** |
-| **Aluno 2:** | **RM:** |
-| **Turma:** | **Data:** |
+| | | | |
+|---|---|---|---|
+| **Aluno 1:** | Lincoln Simao Pereira | **RM:** | 567284 |
+| **Aluno 2:** | Nicolas Sakaue | **RM:** | 567752 |
+| **Turma:** | 2CCPS | **Data:** | 17/set/2026 |
 
 **Link do projeto (repositório):** https://github.com/lincoln743/cp01_edgecomputing
 
