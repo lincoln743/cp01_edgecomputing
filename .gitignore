@@ -6,3 +6,6 @@
 *.o
 *.elf
 *.bin
+
+# arquivos de bloqueio do LibreOffice
+.~lock.*#
