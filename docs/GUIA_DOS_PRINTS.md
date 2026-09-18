@@ -13,18 +13,25 @@ Depois abra `diagram.json` no VS Code e clique em **▶ Start Simulation**
 
 ### Onde fica o Serial Monitor
 
-O Serial Monitor **está dentro da própria aba da simulação**, na faixa preta
-na parte de baixo — ela abre bem fininha, é preciso arrastar a divisória para
-cima. Não use o Serial Monitor do PlatformIO nem a extensão Serial Monitor
-apontando para `/dev/ttyS0`: essas procuram uma placa física na USB e vão dar
-`Failed to open the serial port`.
+No Wokwi para VS Code o Serial Monitor **é um terminal**, no painel inferior
+do VS Code, chamado **"Wokwi Terminal"** (ícone do Wokwi). Ele é criado
+automaticamente quando a simulação começa.
 
-> **Atenção:** a simulação **pausa** quando a aba do simulador deixa de estar
-> visível — e para de imprimir. Divida a tela (botão direito na aba →
-> *Split Right*) para o código e a simulação ficarem lado a lado.
+Se não estiver à vista: abra o painel com ``Ctrl+` `` e escolha
+**Wokwi Terminal** na lista de terminais, à direita do painel.
 
-Se quiser ler o serial em um terminal separado, o `wokwi.toml` já expõe uma
-porta virtual; com a simulação rodando:
+> **Não use** o Serial Monitor do PlatformIO nem a extensão *Serial Monitor*
+> apontando para `/dev/ttyS0`. Elas procuram uma placa física na USB e vão
+> falhar com `Failed to open the serial port` — aqui o ESP32 é simulado.
+
+> **Atenção (causa mais comum de terminal vazio):** a simulação roda dentro da
+> aba do simulador e **fica em pausa enquanto essa aba não está visível**. Se
+> você clicar no `main.cpp`, ela congela e para de imprimir. Deixe a aba da
+> simulação visível — botão direito na aba → *Split Right* — e leia o
+> "Wokwi Terminal" no painel de baixo.
+
+Se preferir ler o serial em outro terminal, o `wokwi.toml` expõe uma porta
+virtual (RFC2217). Com a simulação rodando **e visível**:
 
 ```bash
 pio device monitor -p rfc2217://localhost:4000 -b 115200

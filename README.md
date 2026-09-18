@@ -71,6 +71,9 @@ pio run
 
 # 2. simular: abrir diagram.json no VS Code e clicar em "Start Simulation"
 #    (extensão Wokwi for VS Code, com licença ativada)
+#    O Serial Monitor aparece como o terminal "Wokwi Terminal", no painel
+#    inferior. A simulação PAUSA enquanto a aba do simulador não estiver
+#    visível: deixe-a lado a lado com o código (Split Right).
 
 # 3. variar os sensores: clicar no DHT22 (sliders de T e UR) e
 #    no LDR (slider de lux) durante a simulação
