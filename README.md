@@ -93,9 +93,10 @@ g++ -std=c++17 -I tools/sim tools/sim/sim_main.cpp -o /tmp/no_borda_sim
 ├── src/main.cpp                # firmware: percepção → decisão local → ação
 ├── tools/sim/                  # harness que roda o firmware no PC (validação)
 └── docs/
-    ├── RESPOSTAS.md            # documento do checkpoint preenchido
-    ├── GUIA_DOS_PRINTS.md      # como capturar cada print pedido
-    └── serial_experimentos.txt # saída real dos 5 experimentos
+    ├── Checkpoint1_NoDeBordaInteligente_PREENCHIDO.docx  # ENTREGA: só colar os prints
+    ├── RESPOSTAS.md            # mesmas respostas em markdown
+    ├── GUIA_DOS_PRINTS.md      # como capturar cada um dos 5 prints
+    └── serial_experimentos.txt # saída real dos experimentos da Etapa 4
 ```
 
 ## 6. Por que isto é Edge Computing
