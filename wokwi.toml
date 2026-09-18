@@ -2,3 +2,9 @@
 version   = 1
 firmware  = '.pio/build/esp32dev/firmware.bin'
 elf       = '.pio/build/esp32dev/firmware.elf'
+
+# Porta serial virtual (RFC2217). O Serial Monitor principal continua sendo o
+# painel dentro da propria aba da simulacao; esta porta so serve para ler a
+# saida em um terminal separado, com:
+#     pio device monitor -p rfc2217://localhost:4000 -b 115200
+rfc2217ServerPort = 4000

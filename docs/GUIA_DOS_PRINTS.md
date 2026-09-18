@@ -11,6 +11,25 @@ Depois abra `diagram.json` no VS Code e clique em **▶ Start Simulation**
 (extensão *Wokwi for VS Code*; é preciso ter a licença gratuita ativada com
 `Wokwi: Request a New License`).
 
+### Onde fica o Serial Monitor
+
+O Serial Monitor **está dentro da própria aba da simulação**, na faixa preta
+na parte de baixo — ela abre bem fininha, é preciso arrastar a divisória para
+cima. Não use o Serial Monitor do PlatformIO nem a extensão Serial Monitor
+apontando para `/dev/ttyS0`: essas procuram uma placa física na USB e vão dar
+`Failed to open the serial port`.
+
+> **Atenção:** a simulação **pausa** quando a aba do simulador deixa de estar
+> visível — e para de imprimir. Divida a tela (botão direito na aba →
+> *Split Right*) para o código e a simulação ficarem lado a lado.
+
+Se quiser ler o serial em um terminal separado, o `wokwi.toml` já expõe uma
+porta virtual; com a simulação rodando:
+
+```bash
+pio device monitor -p rfc2217://localhost:4000 -b 115200
+```
+
 Durante a simulação:
 - **clique no DHT22** → abre os sliders de **temperatura** e **umidade**;
 - **clique no LDR** → abre o slider de **lux** (luminosidade).
